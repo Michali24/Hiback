@@ -1,0 +1,18 @@
+בס"ד
+
+צרי פרויקט מסוג Console APP (Framework)
+בשם Events
+
+הוסיפי מחלקה בשם Event
+
+public int Id
+public string Title
+public dateTime start
+
+כתבי פונקציות-
+שליפת כל רשימת האירועים
+הוספת אירוע חדש (ID מתקדם בקוד)
+עדכון כותרת אירוע לפי ID
+מחיקת אירוע לפי ID
+
+צרי רשימה של אירועים והפעילי את הפונקציות

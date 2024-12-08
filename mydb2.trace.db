@@ -1,0 +1,241 @@
+2024-07-15 21:39:42.456713+03:00 jdbc[13]: exception
+org.h2.jdbc.JdbcSQLDataException: Data conversion error converting "'aa' (COURSES: ""ID"" BIGINT NOT NULL)"; SQL statement:
+INSERT INTO "PUBLIC"."COURSES"("CATEGORY_NAME_ID","ID","LECTURER_NAME_ID","COURSE_DESCRIPTION","COURSE_NAME")VALUES(?,?,?,?,?) [22018-224]
+2024-07-15 21:39:42.457710+03:00 jdbc[13]: exception
+org.h2.jdbc.JdbcSQLDataException: Data conversion error converting "'aa' (COURSES: ""ID"" BIGINT NOT NULL)"; SQL statement:
+INSERT INTO "PUBLIC"."COURSES"("CATEGORY_NAME_ID","ID","LECTURER_NAME_ID","COURSE_DESCRIPTION","COURSE_NAME")VALUES(?,?,?,?,?) [22018-224]
+2024-07-15 21:39:56.597469+03:00 jdbc[13]: exception
+org.h2.jdbc.JdbcSQLDataException: Data conversion error converting "'aa' (COURSES: ""ID"" BIGINT NOT NULL)"; SQL statement:
+INSERT INTO "PUBLIC"."COURSES"("CATEGORY_NAME_ID","ID","LECTURER_NAME_ID","COURSE_DESCRIPTION","COURSE_NAME")VALUES(?,?,?,?,?) [22018-224]
+2024-07-15 21:39:56.598470+03:00 jdbc[13]: exception
+org.h2.jdbc.JdbcSQLDataException: Data conversion error converting "'aa' (COURSES: ""ID"" BIGINT NOT NULL)"; SQL statement:
+INSERT INTO "PUBLIC"."COURSES"("CATEGORY_NAME_ID","ID","LECTURER_NAME_ID","COURSE_DESCRIPTION","COURSE_NAME")VALUES(?,?,?,?,?) [22018-224]
+2024-07-16 00:58:35.042744+03:00 jdbc[13]: exception
+org.h2.jdbc.JdbcSQLDataException: Data conversion error converting "'aa' (COURSES: ""ID"" BIGINT NOT NULL)"; SQL statement:
+INSERT INTO "PUBLIC"."COURSES"("CATEGORY_NAME_ID","ID","LECTURER_NAME_ID","COURSE_DESCRIPTION","COURSE_NAME")VALUES(?,?,?,?,?) [22018-224]
+2024-07-16 00:58:35.046732+03:00 jdbc[13]: exception
+org.h2.jdbc.JdbcSQLDataException: Data conversion error converting "'aa' (COURSES: ""ID"" BIGINT NOT NULL)"; SQL statement:
+INSERT INTO "PUBLIC"."COURSES"("CATEGORY_NAME_ID","ID","LECTURER_NAME_ID","COURSE_DESCRIPTION","COURSE_NAME")VALUES(?,?,?,?,?) [22018-224]
+2024-07-26 11:13:08.653541+03:00 jdbc[173]: exception
+org.h2.jdbc.JdbcSQLDataException: Data conversion error converting "'3W5' (COURSES: ""COURSE_PRICE"" FLOAT(53) NOT NULL)"; SQL statement:
+INSERT INTO "PUBLIC"."COURSES"("ID","COURSE_DESCRIPTION","COURSE_NAME","COURSE_PRICE","CATEGORY_NAME_ID","LECTURER_NAME_ID")VALUES(?,?,?,?,?,?) [22018-224]
+2024-07-26 11:13:08.656558+03:00 jdbc[173]: exception
+org.h2.jdbc.JdbcSQLDataException: Data conversion error converting "'3W5' (COURSES: ""COURSE_PRICE"" FLOAT(53) NOT NULL)"; SQL statement:
+INSERT INTO "PUBLIC"."COURSES"("ID","COURSE_DESCRIPTION","COURSE_NAME","COURSE_PRICE","CATEGORY_NAME_ID","LECTURER_NAME_ID")VALUES(?,?,?,?,?,?) [22018-224]
+2024-07-28 12:16:12.063830+03:00 jdbc[13]: exception
+org.h2.jdbc.JdbcSQLDataException: Value too long for column "CATEGORY_DESCRIPTION CHARACTER VARYING(255)": "'A mathematics course is a mandatory course in the education system aimed at pro... (332)"; SQL statement:
+INSERT INTO "PUBLIC"."CATEGORIES"("ID","CATEGORY_DESCRIPTION","CATEGORY_NAME")VALUES(?,?,?) [22001-224]
+2024-07-28 12:16:12.069251+03:00 jdbc[13]: exception
+org.h2.jdbc.JdbcSQLDataException: Value too long for column "CATEGORY_DESCRIPTION CHARACTER VARYING(255)": "'A mathematics course is a mandatory course in the education system aimed at pro... (332)"; SQL statement:
+INSERT INTO "PUBLIC"."CATEGORIES"("ID","CATEGORY_DESCRIPTION","CATEGORY_NAME")VALUES(?,?,?) [22001-224]
+2024-07-28 15:12:07.498488+03:00 jdbc[65]: null
+org.h2.message.DbException: The connection was not closed by the application and is garbage collected [90018-224]
+	at org.h2.message.DbException.get(DbException.java:223)
+	at org.h2.message.DbException.get(DbException.java:199)
+	at org.h2.message.DbException.get(DbException.java:188)
+	at org.h2.jdbc.JdbcConnection.closeOld(JdbcConnection.java:218)
+	at org.h2.jdbc.JdbcConnection.<init>(JdbcConnection.java:135)
+	at org.h2.Driver.connect(Driver.java:59)
+	at com.zaxxer.hikari.util.DriverDataSource.getConnection(DriverDataSource.java:138)
+	at com.zaxxer.hikari.pool.PoolBase.newConnection(PoolBase.java:359)
+	at com.zaxxer.hikari.pool.PoolBase.newPoolEntry(PoolBase.java:201)
+	at com.zaxxer.hikari.pool.HikariPool.createPoolEntry(HikariPool.java:470)
+	at com.zaxxer.hikari.pool.HikariPool$PoolEntryCreator.call(HikariPool.java:733)
+	at com.zaxxer.hikari.pool.HikariPool$PoolEntryCreator.call(HikariPool.java:712)
+	at java.base/java.util.concurrent.FutureTask.run(FutureTask.java:264)
+	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1136)
+	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:635)
+	at java.base/java.lang.Thread.run(Thread.java:833)
+Caused by: org.h2.jdbc.JdbcSQLNonTransientConnectionException: The connection was not closed by the application and is garbage collected [90018-224]
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:690)
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:489)
+	... 16 more
+2024-07-28 20:57:40.970664+03:00 jdbc[24]: exception
+org.h2.jdbc.JdbcSQLDataException: Value too long for column "CATEGORY_DESCRIPTION CHARACTER VARYING(255)": "'A mathematics course is a mandatory course in the education system aimed at pro... (332)"; SQL statement:
+INSERT INTO "PUBLIC"."CATEGORIES"("ID","CATEGORY_DESCRIPTION","CATEGORY_NAME")VALUES(?,?,?) [22001-224]
+2024-07-28 20:57:40.973818+03:00 jdbc[24]: exception
+org.h2.jdbc.JdbcSQLDataException: Value too long for column "CATEGORY_DESCRIPTION CHARACTER VARYING(255)": "'A mathematics course is a mandatory course in the education system aimed at pro... (332)"; SQL statement:
+INSERT INTO "PUBLIC"."CATEGORIES"("ID","CATEGORY_DESCRIPTION","CATEGORY_NAME")VALUES(?,?,?) [22001-224]
+2024-07-28 20:58:01.151374+03:00 jdbc[24]: exception
+org.h2.jdbc.JdbcSQLDataException: Value too long for column "CATEGORY_DESCRIPTION CHARACTER VARYING(255)": "'atics course is a mandatory course in the education system aimed at providing s... (324)"; SQL statement:
+INSERT INTO "PUBLIC"."CATEGORIES"("ID","CATEGORY_DESCRIPTION","CATEGORY_NAME")VALUES(?,?,?) [22001-224]
+2024-07-28 20:58:01.152372+03:00 jdbc[24]: exception
+org.h2.jdbc.JdbcSQLDataException: Value too long for column "CATEGORY_DESCRIPTION CHARACTER VARYING(255)": "'atics course is a mandatory course in the education system aimed at providing s... (324)"; SQL statement:
+INSERT INTO "PUBLIC"."CATEGORIES"("ID","CATEGORY_DESCRIPTION","CATEGORY_NAME")VALUES(?,?,?) [22001-224]
+2024-07-29 18:41:22.225142+03:00 jdbc[176]: null
+org.h2.message.DbException: The connection was not closed by the application and is garbage collected [90018-224]
+	at org.h2.message.DbException.get(DbException.java:223)
+	at org.h2.message.DbException.get(DbException.java:199)
+	at org.h2.message.DbException.get(DbException.java:188)
+	at org.h2.jdbc.JdbcConnection.closeOld(JdbcConnection.java:218)
+	at org.h2.jdbc.JdbcConnection.<init>(JdbcConnection.java:135)
+	at org.h2.Driver.connect(Driver.java:59)
+	at com.zaxxer.hikari.util.DriverDataSource.getConnection(DriverDataSource.java:138)
+	at com.zaxxer.hikari.pool.PoolBase.newConnection(PoolBase.java:359)
+	at com.zaxxer.hikari.pool.PoolBase.newPoolEntry(PoolBase.java:201)
+	at com.zaxxer.hikari.pool.HikariPool.createPoolEntry(HikariPool.java:470)
+	at com.zaxxer.hikari.pool.HikariPool$PoolEntryCreator.call(HikariPool.java:733)
+	at com.zaxxer.hikari.pool.HikariPool$PoolEntryCreator.call(HikariPool.java:712)
+	at java.base/java.util.concurrent.FutureTask.run(FutureTask.java:264)
+	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1136)
+	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:635)
+	at java.base/java.lang.Thread.run(Thread.java:833)
+Caused by: org.h2.jdbc.JdbcSQLNonTransientConnectionException: The connection was not closed by the application and is garbage collected [90018-224]
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:690)
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:489)
+	... 16 more
+2024-07-30 01:06:08.678831+03:00 jdbc[307]: null
+org.h2.message.DbException: The connection was not closed by the application and is garbage collected [90018-224]
+	at org.h2.message.DbException.get(DbException.java:223)
+	at org.h2.message.DbException.get(DbException.java:199)
+	at org.h2.message.DbException.get(DbException.java:188)
+	at org.h2.jdbc.JdbcConnection.closeOld(JdbcConnection.java:218)
+	at org.h2.jdbc.JdbcConnection.<init>(JdbcConnection.java:135)
+	at org.h2.Driver.connect(Driver.java:59)
+	at com.zaxxer.hikari.util.DriverDataSource.getConnection(DriverDataSource.java:138)
+	at com.zaxxer.hikari.pool.PoolBase.newConnection(PoolBase.java:359)
+	at com.zaxxer.hikari.pool.PoolBase.newPoolEntry(PoolBase.java:201)
+	at com.zaxxer.hikari.pool.HikariPool.createPoolEntry(HikariPool.java:470)
+	at com.zaxxer.hikari.pool.HikariPool$PoolEntryCreator.call(HikariPool.java:733)
+	at com.zaxxer.hikari.pool.HikariPool$PoolEntryCreator.call(HikariPool.java:712)
+	at java.base/java.util.concurrent.FutureTask.run(FutureTask.java:264)
+	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1136)
+	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:635)
+	at java.base/java.lang.Thread.run(Thread.java:833)
+Caused by: org.h2.jdbc.JdbcSQLNonTransientConnectionException: The connection was not closed by the application and is garbage collected [90018-224]
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:690)
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:489)
+	... 16 more
+2024-07-30 12:44:19.280570+03:00 jdbc[13]: exception
+org.h2.jdbc.JdbcSQLDataException: Data conversion error converting "'' (COURSES: ""ID"" BIGINT NOT NULL)"; SQL statement:
+INSERT INTO "PUBLIC"."COURSES"("COURSE_PRICE","CATEGORY_NAME_ID","ID","LECTURER_NAME_ID","COURSE_DESCRIPTION","COURSE_NAME")VALUES(?,?,?,?,?,?) [22018-224]
+2024-07-30 12:44:19.284532+03:00 jdbc[13]: exception
+org.h2.jdbc.JdbcSQLDataException: Data conversion error converting "'' (COURSES: ""ID"" BIGINT NOT NULL)"; SQL statement:
+INSERT INTO "PUBLIC"."COURSES"("COURSE_PRICE","CATEGORY_NAME_ID","ID","LECTURER_NAME_ID","COURSE_DESCRIPTION","COURSE_NAME")VALUES(?,?,?,?,?,?) [22018-224]
+2024-07-30 19:16:17.526708+03:00 jdbc[155]: null
+org.h2.message.DbException: The connection was not closed by the application and is garbage collected [90018-224]
+	at org.h2.message.DbException.get(DbException.java:223)
+	at org.h2.message.DbException.get(DbException.java:199)
+	at org.h2.message.DbException.get(DbException.java:188)
+	at org.h2.jdbc.JdbcConnection.closeOld(JdbcConnection.java:218)
+	at org.h2.jdbc.JdbcConnection.<init>(JdbcConnection.java:135)
+	at org.h2.util.JdbcUtils.getConnection(JdbcUtils.java:288)
+	at org.h2.server.web.WebServer.getConnection(WebServer.java:811)
+	at org.h2.server.web.WebApp.login(WebApp.java:1039)
+	at org.h2.server.web.WebApp.process(WebApp.java:227)
+	at org.h2.server.web.WebApp.processRequest(WebApp.java:177)
+	at org.h2.server.web.JakartaWebServlet.doGet(JakartaWebServlet.java:129)
+	at org.h2.server.web.JakartaWebServlet.doPost(JakartaWebServlet.java:166)
+	at jakarta.servlet.http.HttpServlet.service(HttpServlet.java:590)
+	at jakarta.servlet.http.HttpServlet.service(HttpServlet.java:658)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:205)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:149)
+	at org.apache.tomcat.websocket.server.WsFilter.doFilter(WsFilter.java:51)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:174)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:149)
+	at org.springframework.web.filter.RequestContextFilter.doFilterInternal(RequestContextFilter.java:100)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:174)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:149)
+	at org.springframework.web.filter.FormContentFilter.doFilterInternal(FormContentFilter.java:93)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:174)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:149)
+	at org.springframework.web.filter.CharacterEncodingFilter.doFilterInternal(CharacterEncodingFilter.java:201)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:174)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:149)
+	at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:167)
+	at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:90)
+	at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:482)
+	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:115)
+	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:93)
+	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:74)
+	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:340)
+	at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:391)
+	at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:63)
+	at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:896)
+	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1744)
+	at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:52)
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1191)
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:659)
+	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:61)
+	at java.base/java.lang.Thread.run(Thread.java:833)
+Caused by: org.h2.jdbc.JdbcSQLNonTransientConnectionException: The connection was not closed by the application and is garbage collected [90018-224]
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:690)
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:489)
+	... 47 more
+2024-08-04 00:39:20.517042+03:00 jdbc[83]: exception
+org.h2.jdbc.JdbcSQLDataException: Data conversion error converting "'' (LECTURERS: ""YEARS_OF_EXPERIENCE"" INTEGER NOT NULL)"; SQL statement:
+INSERT INTO "PUBLIC"."LECTURERS"("YEARS_OF_EXPERIENCE","ID","LECTURER_ADDRESS","LECTURER_NAME","LECTURER_PHONE","LECTURER_PROFESSION")VALUES(?,?,?,?,?,?) [22018-224]
+2024-08-04 00:39:20.522471+03:00 jdbc[83]: exception
+org.h2.jdbc.JdbcSQLDataException: Data conversion error converting "'' (LECTURERS: ""YEARS_OF_EXPERIENCE"" INTEGER NOT NULL)"; SQL statement:
+INSERT INTO "PUBLIC"."LECTURERS"("YEARS_OF_EXPERIENCE","ID","LECTURER_ADDRESS","LECTURER_NAME","LECTURER_PHONE","LECTURER_PROFESSION")VALUES(?,?,?,?,?,?) [22018-224]
+2024-08-04 01:04:59.593471+03:00 jdbc[83]: exception
+org.h2.jdbc.JdbcSQLDataException: Value too long for column "CATEGORY_DESCRIPTION CHARACTER VARYING(255)": "': Courses in this category focus on protecting digital assets and information f... (256)"; SQL statement:
+INSERT INTO "PUBLIC"."CATEGORIES"("ID","CATEGORY_DESCRIPTION","CATEGORY_NAME")VALUES(?,?,?) [22001-224]
+2024-08-04 01:04:59.593471+03:00 jdbc[83]: exception
+org.h2.jdbc.JdbcSQLDataException: Value too long for column "CATEGORY_DESCRIPTION CHARACTER VARYING(255)": "': Courses in this category focus on protecting digital assets and information f... (256)"; SQL statement:
+INSERT INTO "PUBLIC"."CATEGORIES"("ID","CATEGORY_DESCRIPTION","CATEGORY_NAME")VALUES(?,?,?) [22001-224]
+2024-08-04 01:07:17.749007+03:00 jdbc[83]: exception
+org.h2.jdbc.JdbcSQLDataException: Data conversion error converting "' $1,500' (COURSES: ""COURSE_PRICE"" FLOAT(53) NOT NULL)"; SQL statement:
+INSERT INTO "PUBLIC"."COURSES"("COURSE_PRICE","CATEGORY_NAME_ID","ID","LECTURER_NAME_ID","COURSE_DESCRIPTION","COURSE_NAME")VALUES(?,?,?,?,?,?) [22018-224]
+2024-08-04 01:07:17.750009+03:00 jdbc[83]: exception
+org.h2.jdbc.JdbcSQLDataException: Data conversion error converting "' $1,500' (COURSES: ""COURSE_PRICE"" FLOAT(53) NOT NULL)"; SQL statement:
+INSERT INTO "PUBLIC"."COURSES"("COURSE_PRICE","CATEGORY_NAME_ID","ID","LECTURER_NAME_ID","COURSE_DESCRIPTION","COURSE_NAME")VALUES(?,?,?,?,?,?) [22018-224]
+2024-08-04 01:08:51.272993+03:00 jdbc[83]: exception
+org.h2.jdbc.JdbcSQLDataException: Data conversion error converting "'$1,500' (COURSES: ""COURSE_PRICE"" FLOAT(53) NOT NULL)"; SQL statement:
+INSERT INTO "PUBLIC"."COURSES"("COURSE_PRICE","CATEGORY_NAME_ID","ID","LECTURER_NAME_ID","COURSE_DESCRIPTION","COURSE_NAME")VALUES(?,?,?,?,?,?) [22018-224]
+2024-08-04 01:08:51.272993+03:00 jdbc[83]: exception
+org.h2.jdbc.JdbcSQLDataException: Data conversion error converting "'$1,500' (COURSES: ""COURSE_PRICE"" FLOAT(53) NOT NULL)"; SQL statement:
+INSERT INTO "PUBLIC"."COURSES"("COURSE_PRICE","CATEGORY_NAME_ID","ID","LECTURER_NAME_ID","COURSE_DESCRIPTION","COURSE_NAME")VALUES(?,?,?,?,?,?) [22018-224]
+2024-08-04 01:10:38.110975+03:00 jdbc[104]: exception
+org.h2.jdbc.JdbcSQLDataException: Data conversion error converting "'$1,500' (COURSES: ""COURSE_PRICE"" FLOAT(53) NOT NULL)"; SQL statement:
+INSERT INTO "PUBLIC"."COURSES"("COURSE_PRICE","CATEGORY_NAME_ID","ID","LECTURER_NAME_ID","COURSE_DESCRIPTION","COURSE_NAME")VALUES(?,?,?,?,?,?) [22018-224]
+2024-08-04 01:10:38.110975+03:00 jdbc[104]: exception
+org.h2.jdbc.JdbcSQLDataException: Data conversion error converting "'$1,500' (COURSES: ""COURSE_PRICE"" FLOAT(53) NOT NULL)"; SQL statement:
+INSERT INTO "PUBLIC"."COURSES"("COURSE_PRICE","CATEGORY_NAME_ID","ID","LECTURER_NAME_ID","COURSE_DESCRIPTION","COURSE_NAME")VALUES(?,?,?,?,?,?) [22018-224]
+2024-08-04 01:51:11.645233+03:00 jdbc[116]: null
+org.h2.message.DbException: The connection was not closed by the application and is garbage collected [90018-224]
+	at org.h2.message.DbException.get(DbException.java:223)
+	at org.h2.message.DbException.get(DbException.java:199)
+	at org.h2.message.DbException.get(DbException.java:188)
+	at org.h2.jdbc.JdbcConnection.closeOld(JdbcConnection.java:218)
+	at org.h2.jdbc.JdbcConnection.<init>(JdbcConnection.java:135)
+	at org.h2.Driver.connect(Driver.java:59)
+	at com.zaxxer.hikari.util.DriverDataSource.getConnection(DriverDataSource.java:138)
+	at com.zaxxer.hikari.pool.PoolBase.newConnection(PoolBase.java:359)
+	at com.zaxxer.hikari.pool.PoolBase.newPoolEntry(PoolBase.java:201)
+	at com.zaxxer.hikari.pool.HikariPool.createPoolEntry(HikariPool.java:470)
+	at com.zaxxer.hikari.pool.HikariPool$PoolEntryCreator.call(HikariPool.java:733)
+	at com.zaxxer.hikari.pool.HikariPool$PoolEntryCreator.call(HikariPool.java:712)
+	at java.base/java.util.concurrent.FutureTask.run(FutureTask.java:264)
+	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1136)
+	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:635)
+	at java.base/java.lang.Thread.run(Thread.java:833)
+Caused by: org.h2.jdbc.JdbcSQLNonTransientConnectionException: The connection was not closed by the application and is garbage collected [90018-224]
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:690)
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:489)
+	... 16 more
+2024-08-04 01:51:11.647235+03:00 jdbc[116]: null
+org.h2.message.DbException: The connection was not closed by the application and is garbage collected [90018-224]
+	at org.h2.message.DbException.get(DbException.java:223)
+	at org.h2.message.DbException.get(DbException.java:199)
+	at org.h2.message.DbException.get(DbException.java:188)
+	at org.h2.jdbc.JdbcConnection.closeOld(JdbcConnection.java:218)
+	at org.h2.jdbc.JdbcConnection.<init>(JdbcConnection.java:135)
+	at org.h2.Driver.connect(Driver.java:59)
+	at com.zaxxer.hikari.util.DriverDataSource.getConnection(DriverDataSource.java:138)
+	at com.zaxxer.hikari.pool.PoolBase.newConnection(PoolBase.java:359)
+	at com.zaxxer.hikari.pool.PoolBase.newPoolEntry(PoolBase.java:201)
+	at com.zaxxer.hikari.pool.HikariPool.createPoolEntry(HikariPool.java:470)
+	at com.zaxxer.hikari.pool.HikariPool$PoolEntryCreator.call(HikariPool.java:733)
+	at com.zaxxer.hikari.pool.HikariPool$PoolEntryCreator.call(HikariPool.java:712)
+	at java.base/java.util.concurrent.FutureTask.run(FutureTask.java:264)
+	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1136)
+	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:635)
+	at java.base/java.lang.Thread.run(Thread.java:833)
+Caused by: org.h2.jdbc.JdbcSQLNonTransientConnectionException: The connection was not closed by the application and is garbage collected [90018-224]
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:690)
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:489)
+	... 16 more
