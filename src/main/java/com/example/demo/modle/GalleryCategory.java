@@ -17,14 +17,6 @@ public class GalleryCategory {
     //תמונה של הלוגו של המיטאפ
     private String img_meetup;
 
-    //תלות עם מטאפיים עצמם
-//    @OneToMany(mappedBy = "gallery_category")
-//    private List<Meetups> meetupsList;
-
-    //תלות עם המצגות של המיטאפיים
-//    @OneToMany(mappedBy = "galleryCategoryOf_presentation")
-//    private  List<PresentationsOfMyths> presentationsOfMythsList;
-
     //תלות ען קבצי מיטאפ
     @OneToMany(mappedBy = "gallery_category")
     @JsonIgnore
@@ -32,23 +24,6 @@ public class GalleryCategory {
 
 
     //get&&set
-
-//    public List<Meetups> getMeetupsList() {
-//        return meetupsList;
-//    }
-
-//    public void setMeetupsList(List<Meetups> meetupsList) {
-//        this.meetupsList = meetupsList;
-//    }
-//
-//    public List<PresentationsOfMyths> getPresentationsOfMythsList() {
-//        return presentationsOfMythsList;
-//    }
-//
-//    public void setPresentationsOfMythsList(List<PresentationsOfMyths> presentationsOfMythsList) {
-//        this.presentationsOfMythsList = presentationsOfMythsList;
-//    }
-
     public String getImg_meetup() {
         return img_meetup;
     }

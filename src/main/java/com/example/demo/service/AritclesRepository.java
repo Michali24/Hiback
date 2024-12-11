@@ -12,6 +12,8 @@ public interface AritclesRepository extends JpaRepository<Articles,Long> {
     List<Articles> findByStatusFalse();
 
 
+
+
     ////////////////
     // מתודה להמרה ל-DTO
    // default List<ArticleDto> getArticlesByStatus(boolean status, MapStructmapper mapStructmapper) {

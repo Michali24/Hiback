@@ -178,30 +178,33 @@
         //    }
 
 
-            //שגיאה בפונ הזו⬇⬇⬇-----!!!!
+            //נסיון לתקן את הפונקציה הוספת מאמר
+            //9-12-24
+            //עבד!!!!!!!!!!!!!!!!!!!!
+            //ב"ה
             @PostMapping("/addArticle")
             public ResponseEntity<Articles> addArticles(@RequestBody ArticleDto articleDto) {
-                // Create a new article
-                Articles articles = new Articles();
-                articles.setTitle(articleDto.getTitle());
-                articles.setAuthor(articleDto.getAuthor());
-                articles.setContent(articleDto.getContent());
-                articles.setDescription(articleDto.getDescription());
-                articles.setStatus(articleDto.isStatus()); // always false on create, needs approval
+                // יצירת אובייקט מאמר חדש
+                Articles article = new Articles();
+                article.setTitle(articleDto.getTitle());
+                article.setAuthor(articleDto.getAuthor());
+                article.setContent(articleDto.getContent());
+                article.setDescription(articleDto.getDescription());
+                article.setStatus(articleDto.isStatus()); // בדרך כלל false כשנוצר, צריך אישור
 
+                // חיפוש קטגוריה לפי מזהה
                 Optional<CategoryOfArticles> category = categoryOfArticlesRepository.findById(articleDto.getCategoryId());
-                if (category.isPresent())
-                {
-                    articles.setCategoryOfArticles(category.get()); // Set the existing category as the relationship
-                }
-                else
-                {
-                    return new ResponseEntity<>(null, HttpStatus.BAD_REQUEST);
+                if (category.isPresent()) {
+                    article.setCategoryOfArticles(category.get()); // קביעת הקטגוריה המתאימה
+                } else {
+                    return new ResponseEntity<>(null, HttpStatus.BAD_REQUEST); // אם לא נמצאה קטגוריה
                 }
 
-                Articles newArticles = aritclesRepository.save(articles);
-                return new ResponseEntity<>(newArticles, HttpStatus.CREATED);
+                // שמירה של המאמר החדש
+                Articles savedArticle = aritclesRepository.save(article);
+                return new ResponseEntity<>(savedArticle, HttpStatus.CREATED); // החזרת המאמר שנשמר
             }
+
 
             //שגיאה בפונ הזו⬇⬇⬇-!!!!!!
 //            @PutMapping("/updateArticle/{id}")
@@ -235,6 +238,83 @@
 //            }
 
             //GPT-נסיון לפתור את הבעיה של הפונקציה!!!!
+//            @PutMapping("/updateArticle/{id}")
+//            public ResponseEntity<Articles> updateArticle(@PathVariable long id, @RequestBody ArticleDto articleDto) {
+//                // Find the existing article by id (using the id from the path variable)
+//                Optional<Articles> existingArticle = aritclesRepository.findById(id);
+//
+//                if (existingArticle.isPresent()) {
+//                    Articles articles = existingArticle.get();
+//                    // Update the article's values
+//                    articles.setTitle(articleDto.getTitle());
+//                    articles.setAuthor(articleDto.getAuthor());
+//                    articles.setContent(articleDto.getContent());
+//                    articles.setDescription(articleDto.getDescription());
+//                    articles.setStatus(articleDto.isStatus());
+//
+//                    // Find and set the category of the article
+//                    Optional<CategoryOfArticles> category = categoryOfArticlesRepository.findById(articleDto.getCategoryId());
+//                    if (category.isPresent()) {
+//                        articles.setCategoryOfArticles(category.get());
+//                    } else {
+//                        return new ResponseEntity<>(null, HttpStatus.BAD_REQUEST);
+//                    }
+//
+//                    // Save the updated article
+//                    Articles updatedArticles = aritclesRepository.save(articles);
+//                    return new ResponseEntity<>(updatedArticles, HttpStatus.OK);
+//                } else {
+//                    // Article not found
+//                    return new ResponseEntity<>(null, HttpStatus.NOT_FOUND);
+//                }
+//            }
+
+
+            //GPT-09-12-24
+            //נסיון...
+            //עובד אבל לא שלח באובייקט אצת הID ל המאמר עצמו
+//            @PutMapping("/updateArticle/{id}")
+//            public ResponseEntity<Articles> updateArticle(@PathVariable long id, @RequestBody ArticleDto articleDto) {
+//                // Find the existing article by id (using the id from the path variable)
+//                Optional<Articles> existingArticle = aritclesRepository.findById(id);
+//
+//                if (existingArticle.isPresent()) {
+//                    Articles articles = existingArticle.get();
+//
+//                    // Update the article's values
+//                    articles.setTitle(articleDto.getTitle());
+//                    articles.setAuthor(articleDto.getAuthor());
+//                    articles.setContent(articleDto.getContent());
+//                    articles.setDescription(articleDto.getDescription());
+//
+//                    // Force the status to be true if it's currently false, no matter the status from the DTO
+//                    if (!articles.isStatus()) {
+//                        articles.setStatus(true);  // Always set to true if status is false
+//                    }
+//
+//                    // Find and set the category of the article
+//                    Optional<CategoryOfArticles> category = categoryOfArticlesRepository.findById(articleDto.getCategoryId());
+//                    if (category.isPresent()) {
+//                        articles.setCategoryOfArticles(category.get());
+//                    } else {
+//                        // If no category is found, return a BAD_REQUEST status
+//                        return new ResponseEntity<>(null, HttpStatus.BAD_REQUEST);
+//                    }
+//
+//                    // Save the updated article
+//                    Articles updatedArticles = aritclesRepository.save(articles);
+//
+//                    // Return the updated article with OK status
+//                    return new ResponseEntity<>(updatedArticles, HttpStatus.OK);
+//                } else {
+//                    // Article not found, return NOT_FOUND status
+//                    return new ResponseEntity<>(null, HttpStatus.NOT_FOUND);
+//                }
+//            }
+
+            //נסיון מספר 2-
+            //9-12-24-עובדדדדדדדדדדדדדדד
+            //ב"ה
             @PutMapping("/updateArticle/{id}")
             public ResponseEntity<Articles> updateArticle(@PathVariable long id, @RequestBody ArticleDto articleDto) {
                 // Find the existing article by id (using the id from the path variable)
@@ -242,29 +322,41 @@
 
                 if (existingArticle.isPresent()) {
                     Articles articles = existingArticle.get();
-                    // Update the article's values
+
+                    // Even though we receive ID in the DTO, we use the ID from the path variable
+                    // We are updating the article based on the ID from the URL, not from the DTO
                     articles.setTitle(articleDto.getTitle());
                     articles.setAuthor(articleDto.getAuthor());
                     articles.setContent(articleDto.getContent());
                     articles.setDescription(articleDto.getDescription());
-                    articles.setStatus(articleDto.isStatus());
 
+                    // Force the status to be true if it's currently false
+                    if (!articles.isStatus()) {
+                        articles.setStatus(true); // Always set to true if status is false
+                    }
+
+                    // We don't need to set the article's ID, as it is already set
                     // Find and set the category of the article
                     Optional<CategoryOfArticles> category = categoryOfArticlesRepository.findById(articleDto.getCategoryId());
                     if (category.isPresent()) {
                         articles.setCategoryOfArticles(category.get());
                     } else {
+                        // If no category is found, return a BAD_REQUEST status
                         return new ResponseEntity<>(null, HttpStatus.BAD_REQUEST);
                     }
 
                     // Save the updated article
                     Articles updatedArticles = aritclesRepository.save(articles);
+
+                    // Return the updated article with OK status
                     return new ResponseEntity<>(updatedArticles, HttpStatus.OK);
                 } else {
-                    // Article not found
+                    // Article not found, return NOT_FOUND status
                     return new ResponseEntity<>(null, HttpStatus.NOT_FOUND);
                 }
             }
+
+
 
 
             //cbance from GPT..

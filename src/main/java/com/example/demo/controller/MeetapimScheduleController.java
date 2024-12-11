@@ -1,6 +1,7 @@
         package com.example.demo.controller;
 
 
+        import com.example.demo.dto.MeetupSchedleDTO;
         import com.example.demo.modle.FileMeetup;
         import com.example.demo.modle.MeetapimSchedule;
         import com.example.demo.service.MeetapimScheduleRepository;
@@ -13,6 +14,8 @@
         import java.nio.file.Files;
         import java.nio.file.Path;
         import java.nio.file.Paths;
+        import java.util.ArrayList;
+        import java.util.Date;
         import java.util.List;
         import java.util.Optional;
 
@@ -41,24 +44,82 @@
             }
 
             //Get All List
+            //עובד!!!!!!!!!!!!!!!
+            //10-12-24
             @GetMapping("/getAllMeetapimSchedule")
-            public ResponseEntity<List<MeetapimSchedule>> getAllMeetapimSchedule() {
-                return new ResponseEntity<>(meetapimScheduleRepository.findAll(), HttpStatus.OK);
+            public ResponseEntity<List<MeetupSchedleDTO>> getAllMeetapimSchedule() throws IOException {
+                List<MeetapimSchedule> m = meetapimScheduleRepository.findAll();
+                List<MeetupSchedleDTO> dtos = new ArrayList<>();
+                for (MeetapimSchedule ms : m) {
+                    Path path = Paths.get(File_MeetupSchedule + ms.getPoster_img_meetup());
+                    byte[] arr = Files.readAllBytes(path);
+
+                    MeetupSchedleDTO meetupSchedleDTO = new MeetupSchedleDTO();
+                    meetupSchedleDTO.setId(ms.getId());
+                    meetupSchedleDTO.setMeetupDate(ms.getMeetupDate());
+                    meetupSchedleDTO.setNameOfTheHostCompany(ms.getNameOfTheHostCompany());
+                    meetupSchedleDTO.setAddressHostCompany(ms.getAddressHostCompany());
+                    meetupSchedleDTO.setTimeOfTheMeetup(ms.getTimeOfTheMeetup());
+                    meetupSchedleDTO.setWhoIsthemeetupfor(ms.getWhoIsthemeetupfor());
+                    meetupSchedleDTO.setPoster_img_meetup(arr);
+
+                    dtos.add(meetupSchedleDTO);
+                }
+                return new ResponseEntity<>(dtos, HttpStatus.OK);
             }
 
 
             //Get Last Added Meetup
+//            @GetMapping("/getLastMeetapimSchedule")
+//            public ResponseEntity<MeetapimSchedule> getLastMeetapimSchedule() {
+//                //שליפת המיטאפ האחרון שנוסף
+//                Optional<MeetapimSchedule> lastMeetapimSchedule = meetapimScheduleRepository.findTopByOrderByIdDesc();
+//
+//                if (lastMeetapimSchedule.isEmpty()) {
+//                    return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+//                }
+//
+//                return new ResponseEntity<>(lastMeetapimSchedule.get(), HttpStatus.OK);
+//            }
+
+
+
+            //נסיון
+            //10-12-24
+            //ב"ה מזמור לתודה עובד!!!!!!!!!
             @GetMapping("/getLastMeetapimSchedule")
-            public ResponseEntity<MeetapimSchedule> getLastMeetapimSchedule() {
-                //שליפת המיטאפ האחרון שנוסף
+            public ResponseEntity<MeetupSchedleDTO> getLastMeetapimSchedule() throws IOException {
+                // שליפת המיטאפ האחרון שנוסף
                 Optional<MeetapimSchedule> lastMeetapimSchedule = meetapimScheduleRepository.findTopByOrderByIdDesc();
 
+                // אם אין מיטאפ כזה, מחזירים שגיאה 404
                 if (lastMeetapimSchedule.isEmpty()) {
                     return new ResponseEntity<>(HttpStatus.NOT_FOUND);
                 }
 
-                return new ResponseEntity<>(lastMeetapimSchedule.get(), HttpStatus.OK);
+                // קריאת המיטאפ
+                MeetapimSchedule ms = lastMeetapimSchedule.get();
+
+                // אם הפוסטר הוא קובץ מקומי
+                Path path = Paths.get(File_MeetupSchedule + ms.getPoster_img_meetup());
+                byte[] arr = Files.readAllBytes(path);
+
+                // יצירת DTO
+                MeetupSchedleDTO meetupSchedleDTO = new MeetupSchedleDTO();
+                meetupSchedleDTO.setId(ms.getId());
+                meetupSchedleDTO.setMeetupDate(ms.getMeetupDate());
+                meetupSchedleDTO.setNameOfTheHostCompany(ms.getNameOfTheHostCompany());
+                meetupSchedleDTO.setAddressHostCompany(ms.getAddressHostCompany());
+                meetupSchedleDTO.setTimeOfTheMeetup(ms.getTimeOfTheMeetup());
+                meetupSchedleDTO.setWhoIsthemeetupfor(ms.getWhoIsthemeetupfor());
+                meetupSchedleDTO.setPoster_img_meetup(arr);
+
+                // החזרת התשובה
+                return new ResponseEntity<>(meetupSchedleDTO, HttpStatus.OK);
             }
+
+
+
 
 
             //Post-add
@@ -68,6 +129,7 @@
 //                return new ResponseEntity<>(newMeetapimSchedule, HttpStatus.CREATED);
 //            }
 
+            //אין צורך בזה
             @PostMapping("/addMeetupSchedule")
             public ResponseEntity<MeetapimSchedule> addMeetupSchedule(@RequestBody MeetapimSchedule meetapimSchedule) {
                 MeetapimSchedule newMeetapimSchedule = meetapimScheduleRepository.save(meetapimSchedule);
@@ -75,8 +137,9 @@
             }
 
             ////-file/-------------------------------------------------------
+            //עובד!!!!!!!!!!!!!!!!!!!!
             @PostMapping("/addMeetapimScheduleFile")
-            public ResponseEntity<MeetapimSchedule> uploadAuthorImage(@RequestPart("fileArticle") MeetapimSchedule meetapimSchedule,
+            public ResponseEntity<MeetapimSchedule> addMeetapimScheduleFile(@RequestPart("fileMeetapimSchedule") MeetapimSchedule meetapimSchedule,
                                                                 @RequestPart("file") MultipartFile imageFile) throws IOException {
                 //הניתוב במלא של התמונה +הסימות
                 Path pathFile = Paths.get(File_MeetupSchedule + imageFile.getOriginalFilename());

@@ -8,5 +8,6 @@
     import java.util.Optional;
 
     public interface FileMeetupRepository extends JpaRepository<FileMeetup,Long> {
-
+        //לא עובד לי!!!!!!!!!!
+       // List<FileMeetup>findFileMeetupByGalleryId(Long categoryId);
     }

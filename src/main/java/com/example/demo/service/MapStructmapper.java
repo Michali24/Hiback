@@ -1,8 +1,10 @@
 package com.example.demo.service;
 
 import com.example.demo.dto.ArticleDto;
+import com.example.demo.dto.FileMeetupDTO;
 import com.example.demo.modle.Articles;
 import com.example.demo.modle.CategoryOfArticles;
+import com.example.demo.modle.FileMeetup;
 import jakarta.persistence.ManyToOne;
 import org.mapstruct.Mapper;
 
@@ -21,6 +23,28 @@ public interface MapStructmapper {
     // מיפוי רשימה
     List<ArticleDto> mapArticlesToDtos(List<Articles> articles);
 
+    List<FileMeetupDTO> mapFileMeetupsToDtos(List<FileMeetup> fileMeetups);
+
+
+    //FileMeetupDTO---------------
+//    default FileMeetupDTO fileMeetupToDto(FileMeetup fileMeetup) throws IOException {
+//        FileMeetupDTO fileMeetupDTO = new FileMeetupDTO();
+//        fileMeetupDTO.setId(fileMeetup.getId());
+//        fileMeetupDTO.setTypeFile(fileMeetup.getTypeFile());
+//        fileMeetupDTO.setName(fileMeetup.getName());
+//
+//        if(fileMeetup.getGallery_category()!=null){
+//            fileMeetupDTO.setGallery_category_id(fileMeetup.getGallery_category().getId());
+//        }
+//        Path path=Paths.get(fileMeetup.getUrl_file());
+//        byte[]arr=Files.readAllBytes(path);
+//        if(arr!=null){
+//            fileMeetupDTO.setUrl_file(arr);
+//        }
+//        return fileMeetupDTO;
+//    }
+
+    //לבדוק מה זה ...
 //      default ArticleDto articleToDto(Articles articles) throws IOException {
 //        ArticleDto articleDto = new ArticleDto();
 //        articleDto.setId(articles.getId());

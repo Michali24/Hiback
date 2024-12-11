@@ -10,7 +10,8 @@ import java.util.List;
 public class MeetapimSchedule {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)    private Long id;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
     private String meetupNmae;
     private String meetupDescription;
 
