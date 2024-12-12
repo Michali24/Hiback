@@ -7,6 +7,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import java.util.List;
 
 public interface AritclesRepository extends JpaRepository<Articles,Long> {
+
     List<Articles> findByCategoryOfArticles_Id(Long categoryId);
     // פונקציה למציאת מאמרים עם status = false
     List<Articles> findByStatusFalse();

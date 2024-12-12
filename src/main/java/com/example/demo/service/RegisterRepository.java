@@ -8,4 +8,5 @@ import java.util.List;
 
 public interface RegisterRepository extends JpaRepository<Register, Long> {
     Register findByName(String name);
+   // Register findByEmail(String email);
 }

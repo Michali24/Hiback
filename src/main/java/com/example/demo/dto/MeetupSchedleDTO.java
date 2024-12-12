@@ -67,11 +67,13 @@
 //-------------------------------------------
 package com.example.demo.dto;
 
+import java.time.LocalDate;
 import java.util.Date;
 
 public class MeetupSchedleDTO {
     private Long id;
-    private Date meetupDate;
+//    private Date meetupDate;
+    private LocalDate localmeetupDate;
     private String nameOfTheHostCompany;
     private String addressHostCompany;
     private String timeOfTheMeetup;
@@ -98,12 +100,21 @@ public class MeetupSchedleDTO {
         this.addressHostCompany = addressHostCompany;
     }
 
-    public Date getMeetupDate() {
-        return meetupDate;
+//    public Date getMeetupDate() {
+//        return meetupDate;
+//    }
+//
+//    public void setMeetupDate(Date meetupDate) {
+//        this.meetupDate = meetupDate;
+//    }
+
+
+    public LocalDate getLocalmeetupDate() {
+        return localmeetupDate;
     }
 
-    public void setMeetupDate(Date meetupDate) {
-        this.meetupDate = meetupDate;
+    public void setLocalmeetupDate(LocalDate localmeetupDate) {
+        this.localmeetupDate = localmeetupDate;
     }
 
     public byte[] getPoster_img_meetup() {

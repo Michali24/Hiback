@@ -18,10 +18,10 @@ import java.util.List;
 public interface MapStructmapper {
     //List<ArticleDto> mapArticle(List<Articles> articlesList);
     // מיפוי ישות בודדת ל-DTO
-    ArticleDto articleToDto(Articles articles);
+   // ArticleDto articleToDto(Articles articles);
 
     // מיפוי רשימה
-    List<ArticleDto> mapArticlesToDtos(List<Articles> articles);
+    //List<ArticleDto> mapArticlesToDtos(List<Articles> articles);
 
     List<FileMeetupDTO> mapFileMeetupsToDtos(List<FileMeetup> fileMeetups);
 
@@ -34,7 +34,7 @@ public interface MapStructmapper {
 //        fileMeetupDTO.setName(fileMeetup.getName());
 //
 //        if(fileMeetup.getGallery_category()!=null){
-//            fileMeetupDTO.setGallery_category_id(fileMeetup.getGallery_category().getId());
+//            fileMeetupDTO.setGalleryCategory_id(fileMeetup.getGalleryGalleryCategory().getId());
 //        }
 //        Path path=Paths.get(fileMeetup.getUrl_file());
 //        byte[]arr=Files.readAllBytes(path);

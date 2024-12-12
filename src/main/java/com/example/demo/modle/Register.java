@@ -8,8 +8,10 @@ import java.util.List;
 @Entity
 public class Register {
         @Id
-        @GeneratedValue(strategy = GenerationType.IDENTITY)        private Long id;
+        @GeneratedValue(strategy = GenerationType.IDENTITY)
+        private Long id;
 
+        private boolean isAdmin;
         private String name;
         private String lastName;
         private String email;
@@ -20,7 +22,15 @@ public class Register {
 
        //get&&set
 
-        public String getCompanyName() {
+    public boolean isAdmin() {
+        return isAdmin;
+    }
+
+    public void setAdmin(boolean admin) {
+        isAdmin = admin;
+    }
+
+    public String getCompanyName() {
             return companyName;
         }
 

@@ -18,12 +18,21 @@ public class GalleryCategory {
     private String img_meetup;
 
     //תלות ען קבצי מיטאפ
-    @OneToMany(mappedBy = "gallery_category")
+    @OneToMany(mappedBy = "galleryCategory")
     @JsonIgnore
     private  List<FileMeetup> fileMeetupList;
 
 
     //get&&set
+
+    public List<FileMeetup> getFileMeetupList() {
+        return fileMeetupList;
+    }
+
+    public void setFileMeetupList(List<FileMeetup> fileMeetupList) {
+        this.fileMeetupList = fileMeetupList;
+    }
+
     public String getImg_meetup() {
         return img_meetup;
     }

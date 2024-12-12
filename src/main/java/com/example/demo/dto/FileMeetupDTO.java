@@ -135,7 +135,7 @@ public class FileMeetupDTO {
     private String typeFile;  // סוג הקובץ (תמונה, וידאו)
     private String url_file;      // URL של הקובץ (אם מדובר בסרטון)
     private byte[] fileData;  // נתוני הקובץ בביטים (אם מדובר בתמונה)
-    private Long gallery_category_id;
+    private Long galleryCategoryId;
   //  private String fileType; // "image" או "video" (לזהות את סוג הקובץ)
 
     // get & set methods
@@ -148,12 +148,12 @@ public class FileMeetupDTO {
         this.fileData = fileData;
     }
 
-    public Long getGallery_category_id() {
-        return gallery_category_id;
+    public Long getGalleryCategoryId() {
+        return galleryCategoryId;
     }
 
-    public void setGallery_category_id(Long gallery_category_id) {
-        this.gallery_category_id = gallery_category_id;
+    public void setGalleryCategoryId(Long galleryCategoryId) {
+        this.galleryCategoryId = galleryCategoryId;
     }
 
     public Long getId() {

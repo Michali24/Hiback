@@ -3,6 +3,7 @@ package com.example.demo.modle;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 
+import java.time.LocalDate;
 import java.util.Date;
 import java.util.List;
 
@@ -16,7 +17,8 @@ public class MeetapimSchedule {
     private String meetupDescription;
 
     //פרוט הארוע-המיטאפ
-    private Date meetupDate;
+    //private Date meetupDate;
+    private LocalDate localmeetupDate;
     private String nameOfTheHostCompany;
     private String addressHostCompany;
     private String timeOfTheMeetup;
@@ -36,12 +38,21 @@ public class MeetapimSchedule {
 
     //get&set
 
-    public Date getMeetupDate() {
-        return meetupDate;
+//    public Date getMeetupDate() {
+//        return meetupDate;
+//    }
+//
+//    public void setMeetupDate(Date meetupDate) {
+//        this.meetupDate = meetupDate;
+//    }
+
+
+    public LocalDate getLocalmeetupDate() {
+        return localmeetupDate;
     }
 
-    public void setMeetupDate(Date meetupDate) {
-        this.meetupDate = meetupDate;
+    public void setLocalmeetupDate(LocalDate localmeetupDate) {
+        this.localmeetupDate = localmeetupDate;
     }
 
     public String getPoster_img_meetup() {

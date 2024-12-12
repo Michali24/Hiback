@@ -1,8 +1,11 @@
         package com.example.demo.controller;
 
         import com.example.demo.dto.ArticleDto;
+        import com.example.demo.dto.MeetupSchedleDTO;
         import com.example.demo.modle.Articles;
         import com.example.demo.modle.CategoryOfArticles;
+        import com.example.demo.modle.FileMeetup;
+        import com.example.demo.modle.MeetapimSchedule;
         import com.example.demo.service.AritclesRepository;
         import com.example.demo.service.CategoryOfArticlesRepository;
         import com.example.demo.service.MapStructmapper;
@@ -17,10 +20,14 @@
         import java.nio.file.Files;
         import java.nio.file.Path;
         import java.nio.file.Paths;
-        import java.util.Base64;
+        //i add it
+        import java.util.ArrayList;
         import java.util.List;
         import java.util.Optional;
+        import java.util.*;
         import java.util.stream.Collectors;
+
+      //  import static com.example.demo.controller.MeetapimScheduleController.File_MeetupSchedule;
 
         @RequestMapping("api/Aritcles")
         @RestController
@@ -37,8 +44,9 @@
             @Autowired
             private MapStructmapper mapStructmapper;
 
-            //private static String ARTICLES_DIRECTORY_PATH =System.getProperty("user.dir")+"//PDF//";
-            private static String IMAGES_DIRECTORY_PATH =System.getProperty("user.dir")+"//images//";
+            private static String PDF_DIRECTORY_PATH =System.getProperty("user.dir")+"//PDF//";
+            //ככה GPT הביא לי את הסינטאקס לרשום...
+            //private static final String UPLOAD_DIR = "C:/path/to/uploads"; // תיקיית העלאה בשרת
 
             //בטוח טוב ועובד
         //    public AritclesController(AritclesRepository aritclesRepository) {
@@ -85,16 +93,16 @@
         //    }
 
             //שולף לי ומחזיר לי אובייקט של DTO אבל הערך של ID קטגוריה מוחזר כ-NULL
-            @GetMapping("/getPendingArticles")
-            public ResponseEntity<List<ArticleDto>> getPendingArticles() {
-                // שליפת כל המאמרים עם status=false
-                List<Articles> articlesList = aritclesRepository.findByStatusFalse();
-
-                // המרת המאמרים ל-DTOs
-                List<ArticleDto> articlesDtoList = mapStructmapper.mapArticlesToDtos(articlesList);
-
-                return ResponseEntity.ok(articlesDtoList);
-            }
+//            @GetMapping("/getPendingArticles")
+//            public ResponseEntity<List<ArticleDto>> getPendingArticles() {
+//                // שליפת כל המאמרים עם status=false
+//                List<Articles> articlesList = aritclesRepository.findByStatusFalse();
+//
+//                // המרת המאמרים ל-DTOs
+//                List<ArticleDto> articlesDtoList = mapStructmapper.mapArticlesToDtos(articlesList);
+//
+//                return ResponseEntity.ok(articlesDtoList);
+//            }
 
 
             //נסיון נוסף לGPT
@@ -116,23 +124,23 @@
 //                return ResponseEntity.ok(articlesDtoList);
 //            }
 
-            @GetMapping("/getPendingArticlesWithCategory")
-            public ResponseEntity<List<ArticleDto>> getPendingArticlesWithCategory() {
-                // שליפת כל המאמרים עם status = false וcategoryId שאינו null
-                List<Articles> articlesList = aritclesRepository.findByStatusFalse();
-
-                // המרת המאמרים ל-DTO כולל categoryId אך רק עבור אלה עם categoryId שאינו null
-                List<ArticleDto> articlesDtoList = articlesList.stream()
-                        .filter(article -> article.getCategoryOfArticles() != null) // Make sure category is not null
-                        .map(article -> {
-                            ArticleDto dto = mapStructmapper.articleToDto(article);
-                            dto.setCategoryId(article.getCategoryOfArticles().getId());
-                            return dto;
-                        })
-                        .collect(Collectors.toList());
-
-                return ResponseEntity.ok(articlesDtoList);
-            }
+//            @GetMapping("/getPendingArticlesWithCategory")
+//            public ResponseEntity<List<ArticleDto>> getPendingArticlesWithCategory() {
+//                // שליפת כל המאמרים עם status = false וcategoryId שאינו null
+//                List<Articles> articlesList = aritclesRepository.findByStatusFalse();
+//
+//                // המרת המאמרים ל-DTO כולל categoryId אך רק עבור אלה עם categoryId שאינו null
+//                List<ArticleDto> articlesDtoList = articlesList.stream()
+//                        .filter(article -> article.getCategoryOfArticles() != null) // Make sure category is not null
+//                        .map(article -> {
+//                            ArticleDto dto = mapStructmapper.articleToDto(article);
+//                            dto.setCategoryId(article.getCategoryOfArticles().getId());
+//                            return dto;
+//                        })
+//                        .collect(Collectors.toList());
+//
+//                return ResponseEntity.ok(articlesDtoList);
+//            }
 
 
             //function that return the article with status=false
@@ -182,28 +190,78 @@
             //9-12-24
             //עבד!!!!!!!!!!!!!!!!!!!!
             //ב"ה
-            @PostMapping("/addArticle")
-            public ResponseEntity<Articles> addArticles(@RequestBody ArticleDto articleDto) {
-                // יצירת אובייקט מאמר חדש
-                Articles article = new Articles();
-                article.setTitle(articleDto.getTitle());
-                article.setAuthor(articleDto.getAuthor());
-                article.setContent(articleDto.getContent());
-                article.setDescription(articleDto.getDescription());
-                article.setStatus(articleDto.isStatus()); // בדרך כלל false כשנוצר, צריך אישור
+//            @PostMapping("/addArticle")
+//            public ResponseEntity<Articles> addArticles(@RequestPart("articleFile") ArticleDto articleDto,
+//                                                        @RequestPart("file") MultipartFile file) {
+//                // יצירת אובייקט מאמר חדש
+//                Articles article = new Articles();
+//                article.setTitle(articleDto.getTitle());
+//                article.setAuthor(articleDto.getAuthor());
+//                article.setContent(articleDto.getContent());
+//                article.setDescription(articleDto.getDescription());
+//                article.setStatus(articleDto.isStatus()); // בדרך כלל false כשנוצר, צריך אישור
+//
+//                // חיפוש קטגוריה לפי מזהה
+//                Optional<CategoryOfArticles> category = categoryOfArticlesRepository.findById(articleDto.getCategoryId());
+//                if (category.isPresent()) {
+//                    article.setCategoryOfArticles(category.get()); // קביעת הקטגוריה המתאימה
+//                } else {
+//                    return new ResponseEntity<>(null, HttpStatus.BAD_REQUEST); // אם לא נמצאה קטגוריה
+//                }
+//
+//                // שמירה של המאמר החדש
+//                Articles savedArticle = aritclesRepository.save(article);
+//                return new ResponseEntity<>(savedArticle, HttpStatus.CREATED); // החזרת המאמר שנשמר
+//            }
 
-                // חיפוש קטגוריה לפי מזהה
-                Optional<CategoryOfArticles> category = categoryOfArticlesRepository.findById(articleDto.getCategoryId());
-                if (category.isPresent()) {
-                    article.setCategoryOfArticles(category.get()); // קביעת הקטגוריה המתאימה
-                } else {
-                    return new ResponseEntity<>(null, HttpStatus.BAD_REQUEST); // אם לא נמצאה קטגוריה
-                }
+            //נסיון בהוספת המאמר עם קובץ PDF
+//            @PostMapping("/uploadArticlePDF")
+//            public ResponseEntity<Articles> uploadArticlePDF(@RequestPart("articleDto") ArticleDto articleDto,
+//                                                           @RequestPart("file") MultipartFile file) {
+//                // אם הקובץ ריק
+//                if (file.isEmpty()) {
+//                    return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+//                }
+//
+//                try {
+//                    // יצירת תיקיית ה-upload אם לא קיימת
+//                    Path uploadPath = Paths.get(PDF_DIRECTORY_PATH);
+//                    if (!Files.exists(uploadPath)) {
+//                        Files.createDirectories(uploadPath);
+//                    }
+//
+//                    // שמירה של הקובץ בשרת
+//                    String fileName = UUID.randomUUID().toString() + ".pdf"; // שם קובץ ייחודי
+//                    Path filePath = uploadPath.resolve(fileName);
+//                    file.transferTo(filePath.toFile());
+//
+//                    // URL של הקובץ כדי להציג אותו ב-React
+//                    String fileUrl = "/uploads/" + fileName;
+//
+//                    // כאן תוכל גם לעשות משהו עם האובייקט ArticleDto
+//                    // לדוגמה, לשמור את המאמר ב-DB עם ה-URL של הקובץ
+//                    Articles article = new Articles();
+//                    article.setTitle(articleDto.getTitle());
+//                    article.setAuthor(articleDto.getAuthor());
+//                    article.setContent(articleDto.getContent());
+//                    article.setDescription(articleDto.getDescription());
+//                    article.setStatus(articleDto.isStatus());
+//                    article.setPDFArticleFile(articleDto.getPDFArticleFile());  // שמירה של ה-URL של הקובץ ב-DB
+//
+//                    aritclesRepository.save(article);
+//                    // יש להוסיף כאן את הקוד לשמירת המאמר ב-DB (למשל, `articlesRepository.save(article);`)
+//
+//                    // מחזירים את ה-URL של הקובץ שהועלה
+//                    return new ResponseEntity<>(article, HttpStatus.OK);
+//                } catch (IOException e) {
+//                    e.printStackTrace();
+//                    return new ResponseEntity<>( HttpStatus.INTERNAL_SERVER_ERROR);
+//                }
+//            }
 
-                // שמירה של המאמר החדש
-                Articles savedArticle = aritclesRepository.save(article);
-                return new ResponseEntity<>(savedArticle, HttpStatus.CREATED); // החזרת המאמר שנשמר
-            }
+
+
+
 
 
             //שגיאה בפונ הזו⬇⬇⬇-!!!!!!
@@ -443,6 +501,85 @@
             public ResponseEntity<Articles> deleteArticles(@PathVariable long id) {
                 aritclesRepository.deleteById(id);
                 return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+            }
+
+            //-----------------------------------------------------------------------------------------------------------------
+            //add//12-12-24
+            //good work pagazzz
+            @PostMapping("/addArticle")
+            public ResponseEntity<Articles> addArticle(@RequestPart("fileARTICLE") Articles articles,
+                                                       @RequestPart("file") MultipartFile imageFile) throws IOException {
+                //הניתוב במלא של התמונה +הסימות
+                Path pathFile = Paths.get(PDF_DIRECTORY_PATH + imageFile.getOriginalFilename());
+                //שמירת התמונה בנתיב
+                Files.write(pathFile, imageFile.getBytes());
+                //מעדכנת את הניץוב של התמונה בDATA
+                articles.setPDFArticleFile(imageFile.getOriginalFilename());
+
+                Articles newArticles = aritclesRepository.save(articles);
+
+                return new ResponseEntity<>(newArticles, HttpStatus.CREATED);
+            }
+
+            //get all
+            //12-12-24
+            @GetMapping("/getListArticles")
+            public ResponseEntity<List<ArticleDto>> getListArticles() throws IOException {
+                List<Articles> articles = aritclesRepository.findAll();
+                List<ArticleDto> articleDtos = new ArrayList<>();
+                for (Articles article : articles) {
+                    ArticleDto articleDto = MapArticle(article);
+                    articleDtos.add(articleDto);
+                }
+                return new ResponseEntity<>(articleDtos, HttpStatus.OK);
+            }
+
+//
+//            @GetMapping("/getListArticles")
+//            public ResponseEntity<List<ArticleDto>> getListArticles() throws IOException {
+//                List<Articles> articles = aritclesRepository.findAll();
+//                List<ArticleDto> dtos = new ArrayList<>();
+//                for (Articles article : articles) {
+//
+//                    Path path=Paths.get(PDF_DIRECTORY_PATH + article.getPDFArticleFile());
+//                    byte[] bytes = Files.readAllBytes(path);
+//                    ArticleDto articleDto = new ArticleDto();
+//                    articleDto.setTitle(article.getTitle());
+//                    articleDto.setAuthor(article.getAuthor());
+//                    articleDto.setContent(article.getContent());
+//                    articleDto.setDescription(article.getDescription());
+//                    articleDto.setId(article.getId());
+//                    articleDto.setCategoryId(article.getCategoryOfArticles()!=null?article.getCategoryOfArticles().getId():null);
+//                    articleDto.setPDFArticleFile(bytes);
+//
+//                    dtos.add(articleDto);
+//                }
+//                return new ResponseEntity<>(dtos, HttpStatus.OK);
+//            }
+
+            //12-12-24
+            //יש בעיה עם readAllBytes
+            //הוא כל פעם נופל עליה ונשבר...
+            private ArticleDto MapArticle(Articles articles) throws IOException{
+
+                Path path = Paths.get(PDF_DIRECTORY_PATH + articles.getPDFArticleFile());
+                byte[] arr = Files.readAllBytes(path);
+
+                ArticleDto articleDto = new ArticleDto();
+
+
+                articleDto.setId(articles.getId());
+                articleDto.setTitle(articles.getTitle());
+                articleDto.setAuthor(articles.getAuthor());
+                articleDto.setContent(articles.getContent());
+                articleDto.setDescription(articles.getDescription());
+                articleDto.setStatus(articles.isStatus());
+                articleDto.setCategoryId(articles.getCategoryOfArticles() != null ? articles.getCategoryOfArticles().getId() : null);
+                articleDto.setPDFArticleFile(arr);
+
+
+                return articleDto;
+
             }
 
 

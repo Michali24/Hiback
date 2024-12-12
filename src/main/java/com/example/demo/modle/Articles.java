@@ -20,7 +20,7 @@ public class Articles {
     private boolean status;
 
 //    //קובץ של המאמר או טקסט
-//    private String PDF_article_file;
+    private String PDFArticleFile;
     //תמונה של הכותב או מגיש המאמר
 //    private String img_author_of_article;
 
@@ -30,6 +30,15 @@ public class Articles {
 
 
     //get&&set
+
+
+    public String getPDFArticleFile() {
+        return PDFArticleFile;
+    }
+
+    public void setPDFArticleFile(String PDFArticleFile) {
+        this.PDFArticleFile = PDFArticleFile;
+    }
 
     public void setCategoryOfArticles(CategoryOfArticles categoryOfArticles) {
         this.categoryOfArticles = categoryOfArticles;

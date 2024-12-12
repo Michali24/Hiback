@@ -24,8 +24,8 @@
 
         //תלות
         @ManyToOne
-        @JoinColumn(name = "gallery_category_id", nullable = false)
-        private GalleryCategory gallery_category;
+        @JoinColumn(name = "galleryCategory_id", nullable = false)
+        private GalleryCategory galleryCategory;
 
         //get&&set
         public String getTypeFile() {
@@ -36,12 +36,12 @@
             this.typeFile = typeFile;
         }
 
-        public GalleryCategory getGallery_category() {
-            return gallery_category;
+        public GalleryCategory getGalleryCategory() {
+            return galleryCategory;
         }
 
-        public void setGallery_category(GalleryCategory gallery_category) {
-            this.gallery_category = gallery_category;
+        public void setGalleryCategory(GalleryCategory galleryCategory) {
+            this.galleryCategory = galleryCategory;
         }
 
         public String getName() {
