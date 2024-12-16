@@ -131,6 +131,7 @@ public class Articles {
     //כדי לאשפר טקסט מאוד גדול
 //    @Lob
 //    private String content;
+    @Lob
     private String description;
 
     //האם הוא מוצג (נבדרק ) או לא
