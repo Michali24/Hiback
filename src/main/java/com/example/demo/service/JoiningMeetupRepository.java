@@ -9,4 +9,5 @@ import java.util.List;
 public interface JoiningMeetupRepository extends JpaRepository<JoiningMeetup,Long> {
     List<JoiningMeetup> findByMeetapimSchedule_Id(Long categoryId);
     JoiningMeetup findByName(String name);
+
 }

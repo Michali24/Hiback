@@ -224,7 +224,7 @@
 
             //Deletet
             @DeleteMapping("/deleteMeetapimSchedule/{id}")
-            public ResponseEntity<MeetapimSchedule> deleteMeetapimSchedule(@PathVariable long id) {
+            public ResponseEntity<MeetapimSchedule> deleteMeetapimSchedule(@PathVariable Long id) {
                 meetapimScheduleRepository.deleteById(id);
                 return new ResponseEntity<>(HttpStatus.NO_CONTENT);
             }

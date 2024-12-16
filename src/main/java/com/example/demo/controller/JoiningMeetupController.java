@@ -20,6 +20,7 @@
     @RequestMapping("api/JoiningMeetup")
     @RestController
     @CrossOrigin
+
     public class JoiningMeetupController {
 
         @Autowired
@@ -120,4 +121,5 @@
             joiningMeetupRepository.deleteById(id);
             return new ResponseEntity<>(HttpStatus.NO_CONTENT);
         }
+
     }
