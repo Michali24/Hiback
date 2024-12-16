@@ -199,7 +199,7 @@
             //עובד!!!!!!!!!!!!!!!!!!!!
             @PostMapping("/addMeetapimScheduleFile")
             public ResponseEntity<MeetapimSchedule> addMeetapimScheduleFile(@RequestPart("fileMeetapimSchedule") MeetapimSchedule meetapimSchedule,
-                                                                @RequestPart("file") MultipartFile imageFile) throws IOException {
+                                                                            @RequestPart("file") MultipartFile imageFile) throws IOException {
                 //הניתוב במלא של התמונה +הסימות
                 Path pathFile = Paths.get(File_MeetupSchedule + imageFile.getOriginalFilename());
                 //שמירת התמונה בנתיב

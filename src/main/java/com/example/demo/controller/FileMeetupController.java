@@ -329,6 +329,49 @@
             //GPT
             //ב"ה עובד!!!!!!!!!!!!!!!!!!!!!
             //11-12-24
+//            @PostMapping("/addMeetupFile2")
+//            public ResponseEntity<FileMeetup> addMeetupFile2(@RequestPart("fileFileMeetup") FileMeetupDTO fileMeetupDTO,
+//                                                             @RequestPart("file") MultipartFile file) throws IOException {
+//
+//                FileMeetup fileMeetup = new FileMeetup();
+//                fileMeetup.setName(fileMeetupDTO.getName());
+//                fileMeetup.setTypeFile(fileMeetupDTO.getTypeFile());
+//
+//                // ניהול הקטגוריה
+//                Optional<GalleryCategory> category = galleryCategoryRepository.findById(fileMeetupDTO.getGalleryCategoryId());
+//                if (category.isPresent()) {
+//                    fileMeetup.setGalleryCategory(category.get());
+//                } else {
+//                    return new ResponseEntity<>(null, HttpStatus.BAD_REQUEST);
+//                }
+//
+//                // טיפול בקבצים לפי סוג
+//                if (fileMeetupDTO.getTypeFile().equals("image")) {
+//                    // אם זה תמונה, שמירה בשרת כקובץ תמונה
+//                    Path pathFile = Paths.get(File_Meetup + file.getOriginalFilename());
+//                    Files.write(pathFile, file.getBytes());
+//
+//                    // עדכון נתיב התמונה במסד הנתונים
+//                    fileMeetup.setUrl_file(file.getOriginalFilename());
+//
+//                    System.out.println("fileMeetupDTO.getUrl_file()");
+//                    System.out.println(fileMeetup.getUrl_file());
+//
+//
+//                } else if (fileMeetupDTO.getTypeFile().equals("video")) {
+//                    // אם זה סרטון, שמירת ה-URL של הסרטון (לא שומרים את הקובץ עצמו)
+//                    System.out.println("fileMeetupDTO.getUrl_file()");
+//                    System.out.println(fileMeetupDTO.getUrl_file());
+//                    fileMeetup.setUrl_file(fileMeetupDTO.getUrl_file());
+//                }
+//
+//                // שמירת האובייקט במסד הנתונים
+//                FileMeetup newFileMeetup = fileMeetupRepository.save(fileMeetup);
+//
+//                return new ResponseEntity<>(newFileMeetup, HttpStatus.CREATED);
+//            }
+
+            //
             @PostMapping("/addMeetupFile2")
             public ResponseEntity<FileMeetup> addMeetupFile2(@RequestPart("fileFileMeetup") FileMeetupDTO fileMeetupDTO,
                                                              @RequestPart("file") MultipartFile file) throws IOException {
@@ -354,15 +397,18 @@
                     // עדכון נתיב התמונה במסד הנתונים
                     fileMeetup.setUrl_file(file.getOriginalFilename());
 
-                    System.out.println("fileMeetupDTO.getUrl_file()");
-                    System.out.println(fileMeetup.getUrl_file());
-
+                    System.out.println("Image file URL: " + fileMeetup.getUrl_file());
 
                 } else if (fileMeetupDTO.getTypeFile().equals("video")) {
                     // אם זה סרטון, שמירת ה-URL של הסרטון (לא שומרים את הקובץ עצמו)
-                    System.out.println("fileMeetupDTO.getUrl_file()");
-                    System.out.println(fileMeetupDTO.getUrl_file());
                     fileMeetup.setUrl_file(fileMeetupDTO.getUrl_file());
+//                    String videoUrl = fileMeetupDTO.getUrl_file();
+//                    if (videoUrl != null && !videoUrl.isEmpty()) {
+//                        fileMeetup.setUrl_file(videoUrl);
+//                        System.out.println("Video URL: " + videoUrl);
+//                    } else {
+//                        return new ResponseEntity<>( HttpStatus.BAD_REQUEST);
+//                    }
                 }
 
                 // שמירת האובייקט במסד הנתונים
@@ -370,6 +416,7 @@
 
                 return new ResponseEntity<>(newFileMeetup, HttpStatus.CREATED);
             }
+
 
 
 
@@ -696,10 +743,22 @@
             //מחזיר את כל המיטאפיים לפי ID של קטגןריה  גלרייה מסומית
             //עובד ב"ה
             //11-12-24
+//            @GetMapping("/getFileMeetupsByGalleryCategoryId/{galleryCategoryId}")
+//            public ResponseEntity<List<FileMeetup>>getFileMeetupsByGalleryCategoryId(@PathVariable Long galleryCategoryId){
+//               List<FileMeetup> fileMeetups = fileMeetupRepository.findByGalleryCategory_Id(galleryCategoryId);
+//               return new ResponseEntity<>(fileMeetups, HttpStatus.OK);
+//            }
+
             @GetMapping("/getFileMeetupsByGalleryCategoryId/{galleryCategoryId}")
-            public ResponseEntity<List<FileMeetup>>getFileMeetupsByGalleryCategoryId(@PathVariable Long galleryCategoryId){
-               List<FileMeetup> fileMeetups = fileMeetupRepository.findByGalleryCategory_Id(galleryCategoryId);
-               return new ResponseEntity<>(fileMeetups, HttpStatus.OK);
+            public ResponseEntity<List<FileMeetupDTO>>getFileMeetupsByGalleryCategoryId(@PathVariable Long galleryCategoryId) throws IOException {
+                List<FileMeetup> fileMeetups = fileMeetupRepository.findByGalleryCategory_Id(galleryCategoryId);
+                List<FileMeetupDTO> fileMeetupDTOs = new ArrayList<>();
+                for (FileMeetup fileMeetup : fileMeetups) {
+                    FileMeetupDTO fileMeetupDTO =MapFileMeetupDTO(fileMeetup);
+                    fileMeetupDTOs.add(fileMeetupDTO);
+                }
+
+                return new ResponseEntity<>(fileMeetupDTOs, HttpStatus.OK);
             }
 
 
