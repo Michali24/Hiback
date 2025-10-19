@@ -51,34 +51,6 @@
             return new ResponseEntity<>(galleryCategoryRepository.findAll(), HttpStatus.OK);
         }
 
-
-//        @GetMapping("/getAllGalleryCategoryFile")
-//        public ResponseEntity<List<GalleryCategoryDTO>> getAllGalleryCategoryFile() {
-//            List<GalleryCategory> galleryCategories = galleryCategoryRepository.findAll();
-//
-//            //יצירת רשימה חדשה של FileMeetupDTO
-//            List<GalleryCategoryDTO>  galleryCategoryDTOS= new ArrayList<>();
-//
-//            //הוספת כל האובייקטים עם הנתיב המלא של התמונה ל-DTO
-//            for (GalleryCategory galleryCategory : galleryCategories) {
-//                GalleryCategoryDTO galleryCategoryDTO= new GalleryCategoryDTO();
-//                galleryCategoryDTO.setId(galleryCategory.getId());
-//                galleryCategoryDTO.setNameMeetup(galleryCategory.getNameMeetup());
-//                galleryCategoryDTO.setDescriptionMeetup(galleryCategory.getDescriptionMeetup());
-//                galleryCategoryDTO.setCompanyName(galleryCategory.getCompanyName());
-//
-//
-//                //אם ה-URL של התמונה קיים, נוסיף את הנתיב המלא
-//                if (galleryCategory.getImg_meetup() != null) {
-//                    galleryCategoryDTO.setImg_meetup("http://localhost:8080/imgesMeetup/" + galleryCategory.getImg_meetup());
-//                }
-//
-//                galleryCategoryDTOS.add(galleryCategoryDTO);
-//            }
-//
-//            return new ResponseEntity<>(galleryCategoryDTOS, HttpStatus.OK);
-//        }
-
         @GetMapping("/getAllGalleryCategoryFile")
         public ResponseEntity<List<GalleryCategoryDTO>> getAllGalleryCategoryFile() throws IOException{
 
@@ -135,33 +107,6 @@
 
             return new ResponseEntity<>(newGalleryCategory, HttpStatus.CREATED);
         }
-
-        //GPT-POST---------------------------------
-//        @PostMapping("/addGalleryCategoryFile")
-//        public ResponseEntity<GalleryCategory> uploadAuthorImage(
-//                @RequestPart("fileGalleryCategory") String fileGalleryCategoryJSON, // JSON שמתקבל כשדה
-//                @RequestPart("file") MultipartFile imageFile // קובץ שמתקבל כשדה
-//        ) throws IOException {
-//            // הדפסת נתונים ללוג לצורכי דיבוג
-//            System.out.println("Received fileGalleryCategory JSON: " + fileGalleryCategoryJSON);
-//            System.out.println("Received file name: " + imageFile.getOriginalFilename());
-//
-//            // המרת ה-JSON ל-GalleryCategory
-//            ObjectMapper mapper = new ObjectMapper(); // יצירת ObjectMapper
-//            GalleryCategory galleryCategory = mapper.readValue(fileGalleryCategoryJSON, GalleryCategory.class); // המרת JSON לאובייקט
-//
-//            // שמירת הקובץ בתיקייה
-//            Path pathFile = Paths.get(File_GalleryCategoty + imageFile.getOriginalFilename());
-//            Files.write(pathFile, imageFile.getBytes()); // כתיבת תוכן הקובץ
-//
-//            // עדכון הנתיב ושמירת הנתונים בבסיס הנתונים
-//            galleryCategory.setImg_meetup(imageFile.getOriginalFilename()); // עדכון נתיב התמונה
-//            GalleryCategory newGalleryCategory = galleryCategoryRepository.save(galleryCategory); // שמירת אובייקט
-//
-//            return new ResponseEntity<>(newGalleryCategory, HttpStatus.CREATED); // החזרת תשובה ללקוח
-//        }
-
-
 
         //Put
         @PutMapping("/updateGalleryCategory/{id}")

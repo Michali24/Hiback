@@ -50,34 +50,12 @@
         }
 
 
-        //למה הפונ הזו לא עובדת???
-        //פשוט נוריד את העניין שלהבדיקה מהאתר למרות שכדאי לעשות את זה
-        @PostMapping("/checkIfUserExistsByName")
-        public ResponseEntity<Boolean> checkIfUserExistsByName(@RequestBody JoiningMeetup joiningMeetup) {
-            // מחפשים אם יש משתמש עם השם שנשלח
-            JoiningMeetup j = joiningMeetupRepository.findByName(joiningMeetup.getName());
-            if (j == null) {
-                return new ResponseEntity<>(false, HttpStatus.OK); // אם לא נמצא, מחזירים false
-            }
-            return new ResponseEntity<>(true, HttpStatus.OK); // אם נמצא, מחזירים true
-        }
-
-
-
-
         //getJoiningMeetupByMeetupScheduleId
         @GetMapping("/getJoiningMeetupByMeetupScheduleId/{meetupScheduleId}")
         public ResponseEntity<List<JoiningMeetup>> getJoiningMeetupByMeetupScheduleId(@PathVariable Long meetupScheduleId) {
             List<JoiningMeetup> joiningMeetups = joiningMeetupRepository.findByMeetapimSchedule_Id(meetupScheduleId);
             return new ResponseEntity<>(joiningMeetups, HttpStatus.OK);
         }
-
-        //Post-add
-//        @PostMapping("/addJoiningMeetup")
-//        public ResponseEntity<JoiningMeetup> addJoiningMeetup(@RequestBody JoiningMeetup joiningMeetup) {
-//            JoiningMeetup newJoiningMeetup = joiningMeetupRepository.save(joiningMeetup);
-//            return new ResponseEntity<>(newJoiningMeetup, HttpStatus.CREATED);
-//        }
 
         //מוסיף בקשה להצטרפות לי מיטאפ מסויים
         @PostMapping("/addJoiningMeetup")

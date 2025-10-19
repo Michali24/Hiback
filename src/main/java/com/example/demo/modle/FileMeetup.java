@@ -2,21 +2,12 @@
 
     import jakarta.persistence.*;
 
-    //enum MeetingFileType{
-    //    IMG,
-    //    VIDIO,
-    //    //מצגת
-    //    PRESENT
-    //}
     @Entity
     public class FileMeetup {
 
         @Id
         @GeneratedValue(strategy = GenerationType.IDENTITY)
         private Long id;
-    //    @Enumerated(EnumType.STRING)
-    //    private MeetingFileType type;
-        //במקום ENUM
         private String typeFile;
         private String url_file;
         //השם של קובץ הPDF
@@ -51,14 +42,6 @@
         public void setName(String name) {
             this.name = name;
         }
-
-//        public MeetingFileType getType() {
-//            return type;
-//        }
-//
-//        public void setType(MeetingFileType type) {
-//            this.type = type;
-//        }
 
         public String getUrl_file() {
             return url_file;

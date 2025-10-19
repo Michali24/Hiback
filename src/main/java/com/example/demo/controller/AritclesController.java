@@ -28,7 +28,6 @@
         import java.util.*;
         import java.util.stream.Collectors;
 
-      //  import static com.example.demo.controller.MeetapimScheduleController.File_MeetupSchedule;
 
         @RequestMapping("api/Aritcles")
         @RestController
@@ -48,16 +47,11 @@
             private static String PDF_DIRECTORY_PATH =System.getProperty("user.dir")+"//PDF//";
 
 
-            //נסיון על ידי GPT
                 public AritclesController(AritclesRepository aritclesRepository, MapStructmapper mapStructmapper) {
                     this.aritclesRepository = aritclesRepository;
                     this.mapStructmapper = mapStructmapper;
                 }
 
-
-            //-----------------------------------------------------------------------------------------------------------------
-            //get all
-            //12-12-24
             @GetMapping("/getListArticles")
             public ResponseEntity<List<ArticleDto>> getListArticles() throws IOException {
                 List<Articles> articles = aritclesRepository.findAll();
@@ -69,8 +63,6 @@
                 return new ResponseEntity<>(articleDtos, HttpStatus.OK);
             }
 
-            //add//12-12-24
-            //good work pagazzz
             @PostMapping("/addArticle")
             public ResponseEntity<Articles> addArticle(@RequestPart("fileARTICLE") Articles articles,
                                                        @RequestPart("file") MultipartFile imageFile) throws IOException {
@@ -85,9 +77,8 @@
 
                 return new ResponseEntity<>(newArticles, HttpStatus.CREATED);
             }
-            //gooddddddd
-            //pagazzz
-            //12-12-24
+
+
             @PutMapping("/updateArticle/{id}")
             public ResponseEntity<ArticleDto> updateArticle(@PathVariable Long id, @RequestBody ArticleDto articleDto) {
                 // חיפוש המאמר על פי ה-ID
@@ -107,7 +98,6 @@
                 updatedArticleDto.setId(articles.getId());
                 updatedArticleDto.setTitle(articles.getTitle());
                 updatedArticleDto.setAuthor(articles.getAuthor());
-//                updatedArticleDto.setContent(articles.getContent());
                 updatedArticleDto.setDescription(articles.getDescription());
                 updatedArticleDto.setStatus(articles.isStatus());
                 updatedArticleDto.setCategoryId(articles.getCategoryOfArticles() != null ? articles.getCategoryOfArticles().getId() : null);
@@ -129,7 +119,7 @@
                 return new ResponseEntity<>(updatedArticleDto, HttpStatus.OK);
             }
 
-            //pagazzzzzzzzz
+
             @GetMapping("/getListArticlesWithStatusFalse")
             public ResponseEntity<List<ArticleDto>> getListArticlesWithStatusFalse() throws IOException {
                 // קריאה לפונקציה במאגר הנתונים שמחזירה מאמרים עם סטטוס false
@@ -142,7 +132,6 @@
                 return new ResponseEntity<>(articleDtos, HttpStatus.OK);
             }
 
-            //pagazz
             @GetMapping("/getArticlesByCategoryId/{categoryId}")
             public ResponseEntity<List<ArticleDto>> getArticlesByCategoryId(@PathVariable Long categoryId)throws IOException {
                 List<Articles> articles = aritclesRepository.findByCategoryOfArticles_Id(categoryId);
@@ -154,7 +143,6 @@
                 return new ResponseEntity<>(articleDtos, HttpStatus.OK);
             }
 
-            //pagazzzzzzzzzzzzzzzzzzzzzzzzzzzzz
             @GetMapping("/getArticleById/{id}")
             public ResponseEntity<ArticleDto> getArticleById(@PathVariable Long id)throws IOException {
                 Articles a = aritclesRepository.findById(id).orElse(null);
@@ -167,7 +155,7 @@
             }
 
 
-            //Deletet
+
             @DeleteMapping("/deleteArticles/{id}")
             public ResponseEntity<Articles> deleteArticles(@PathVariable long id) {
                 aritclesRepository.deleteById(id);
@@ -175,7 +163,7 @@
             }
 
 
-            //12-12-24
+
             private ArticleDto MapArticle(Articles articles) throws IOException{
 
                 Path path = Paths.get(PDF_DIRECTORY_PATH + articles.getPDFArticleFile());
@@ -186,7 +174,6 @@
                 articleDto.setId(articles.getId());
                 articleDto.setTitle(articles.getTitle());
                 articleDto.setAuthor(articles.getAuthor());
-//                articleDto.setContent(articles.getContent());
                 articleDto.setDescription(articles.getDescription());
                 articleDto.setStatus(articles.isStatus());
                 articleDto.setCategoryId(articles.getCategoryOfArticles() != null ? articles.getCategoryOfArticles().getId() : null);

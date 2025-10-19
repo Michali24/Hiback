@@ -129,8 +129,6 @@ public class Articles {
     private String title;
     private String author;
     //כדי לאשפר טקסט מאוד גדול
-//    @Lob
-//    private String content;
     @Lob
     private String description;
 
@@ -140,8 +138,7 @@ public class Articles {
     //    //קובץ של המאמר או טקסט
     @Lob
     private String PDFArticleFile;
-    //תמונה של הכותב או מגיש המאמר
-//    private String img_author_of_article;
+
 
     @ManyToOne
     @JoinColumn(name = "category_id", nullable = false)
@@ -165,21 +162,6 @@ public class Articles {
     public CategoryOfArticles getCategoryOfArticles() {
         return categoryOfArticles;
     }
-
-//    public String getPDF_article_file() {
-//        return PDF_article_file;
-//    }
-//
-//    public void setPDF_article_file(String PDF_article_file) {
-//        this.PDF_article_file = PDF_article_file;
-//    }
-//    public String getImg_author_of_article() {
-//        return img_author_of_article;
-//    }
-//
-//    public void setImg_author_of_article(String img_author_of_article) {
-//        this.img_author_of_article = img_author_of_article;
-//    }
 
 
     public boolean isStatus() {
@@ -206,13 +188,6 @@ public class Articles {
         this.author = author;
     }
 
-//    public String getContent() {
-//        return content;
-//    }
-//
-//    public void setContent(String content) {
-//        this.content = content;
-//    }
 
     public String getDescription() {
         return description;

@@ -35,12 +35,6 @@ public class RegisterController {
         return new ResponseEntity<>(registerRepository.findAll(), HttpStatus.OK);
     }
 
-//    //Post-add
-//    @PostMapping("/addRegister")
-//    public ResponseEntity<Register> addRegister(@RequestBody Register register) {
-//        Register newRegister = registerRepository.save(register);
-//        return new ResponseEntity<>(newRegister, HttpStatus.CREATED);
-//    }
 
     @PostMapping("/addRegister")
     public ResponseEntity<Register> addUsers(@RequestBody Register register){
@@ -56,7 +50,6 @@ public class RegisterController {
 
     //להוסיף פונקציה שמכניסה משתמש
     //כאן צריך לבדוק האם שם המשתמש והסיסמא נכונים
-
     @PostMapping("Login")
     public ResponseEntity<UserDto> LogIn(@RequestBody Register register){
         ResponseEntity<UserDto> response = null;

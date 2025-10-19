@@ -38,15 +38,6 @@ public class MeetapimSchedule {
 
     //get&set
 
-//    public Date getMeetupDate() {
-//        return meetupDate;
-//    }
-//
-//    public void setMeetupDate(Date meetupDate) {
-//        this.meetupDate = meetupDate;
-//    }
-
-
     public LocalDate getLocalmeetupDate() {
         return localmeetupDate;
     }
